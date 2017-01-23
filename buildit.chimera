@@ -3,6 +3,8 @@ cflags=$2
 cflags="${cflags%\"}"
 cflags="${cflags#\"}"
 
+cd src_corpora/vlc
 make CC=$1 CFLAGS="-Wall -Wextra -Wsign-compare -Wundef -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wmissing-prototypes -Wvolatile-register-var -Werror-implicit-function-declaration -Winit-self -Wformat-security $cflags"
 cp lib/.libs/libvlc.so.5.5.0 ../$4/libvlc.$3
 make clean
+cd ../..

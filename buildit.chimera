@@ -2,9 +2,12 @@
 cflags=$2
 cflags="${cflags%\"}"
 cflags="${cflags#\"}"
-
 cd src_corpora/vlc
+test -f configure || $(./bootstrap && ./configure --disable-avcodec --disable-a52)
+
 make CC=$1 CFLAGS="-Wall -Wextra -Wsign-compare -Wundef -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wmissing-prototypes -Wvolatile-register-var -Werror-implicit-function-declaration -Winit-self -Wformat-security $cflags"
-cp lib/.libs/libvlc.so.5.5.0 ../$4/libvlc.$3
+#cp lib/.libs/libvlc.so.5.5.0 ../$4/libvlc.$3
+install -D lib/.libs/libvlc.so.5.5.0 ../../$4/
+mv ../../$4/libvlc.so.5.5.0 ../../$4/libvlc.$3
 make clean
 cd ../..

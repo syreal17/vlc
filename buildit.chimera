@@ -8,7 +8,7 @@ test -d .git || $(mv .git .gitf && mkdir .git && cp -R $(cat .gitf | awk '{print
 
 make CC=$1 CFLAGS="-Wall -Wextra -Wsign-compare -Wundef -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wmissing-prototypes -Wvolatile-register-var -Werror-implicit-function-declaration -Winit-self -Wformat-security $cflags"
 #cp lib/.libs/libvlc.so.5.5.0 ../$4/libvlc.$3
-install -D lib/.libs/libvlc.so.5.5.0 ../../$4/
+install -D lib/.libs/libvlc.so.5.5.0 -m 644 -t ../../$4/
 mv ../../$4/libvlc.so.5.5.0 ../../$4/libvlc.$3
 make clean
 rm -rf .git

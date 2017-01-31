@@ -4,7 +4,7 @@ cflags="${cflags%\"}"
 cflags="${cflags#\"}"
 cd src_corpora/vlc
 test -f configure || $(./bootstrap && ./configure --disable-avcodec --disable-a52)
-test -d .git || $(mv .git .gitf && mkdir .git && cp -R $(cat .gitf | awk '{print($2)}')/* .git/)
+test -d .git || $(mv .git .gitf && mkdir .git && cp -R $(cat .gitf | awk '{print($2)}')/* .git/ && sed -i 's/\.\.\/\.\.\/\.\.\/\.\.\/src_corpora\/vlc/\./g' .git/config)
 
 make CC=$1 CFLAGS="-Wall -Wextra -Wsign-compare -Wundef -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Wmissing-prototypes -Wvolatile-register-var -Werror-implicit-function-declaration -Winit-self -Wformat-security $cflags"
 #cp lib/.libs/libvlc.so.5.5.0 ../$4/libvlc.$3
